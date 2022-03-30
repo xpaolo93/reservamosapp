@@ -3,8 +3,12 @@ import React, { useState } from 'react';
 import { getWeather } from '../api/ApiPlaces';
 import { OpenWheaterResponse, PlacesResponse } from '../models/responses';
 import { ModalPlace } from './';
+import { useDispatch } from 'react-redux';
+import { msgError } from '../actions/UI.actions';
 
 const Place = (place: PlacesResponse) => {
+
+    const dispatch = useDispatch()
 
     const [loadingWeather, setLoadingWeather] = useState(false)
 
@@ -13,8 +17,10 @@ const Place = (place: PlacesResponse) => {
     const handleSeleccionarPlace = async (place: PlacesResponse) => {
         setLoadingWeather(true)
         const weatherResp = await getWeather(place.lat, place.long);
-        if (Object.keys(weatherResp).length > 0) {
+        if (weatherResp !== null) {
             setWeather(weatherResp)
+        }else{
+            dispatch(msgError('Hubo un error al buscar el pronóstico en esta zona'))
         }
         setLoadingWeather(false)
     }

@@ -6,3 +6,5 @@
 3. Desde la ubicacion de tu proyecto en tu consola de comando ejecutar el comando "npm install"
 
 4. Una vez que finalice la instalación debera ejecutar el comando "npm start"
+
+5. Para ver demo puede ingresar a http://paolo-lopez.com/reservamosapp/
